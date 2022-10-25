@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="4.0" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+    <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/Common.xml">
+        <edmx:Include Alias="Common" Namespace="com.sap.vocabularies.Common.v1"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Core.V1.xml">
+        <edmx:Include Alias="Core" Namespace="Org.OData.Core.V1"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/UI.xml">
+        <edmx:Include Alias="UI" Namespace="com.sap.vocabularies.UI.v1"/>
+    </edmx:Reference>
+    <edmx:DataServices>
+        <Schema Namespace="AgriExports" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+            <EntityContainer Name="EntityContainer">
+                <EntitySet Name="Procurement" EntityType="AgriExports.Procurement"/>
+            </EntityContainer>
+            <EntityType Name="Procurement">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                    <PropertyRef Name="Year"/>
+                    <PropertyRef Name="Area"/>
+                </Key>
+                <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="createdBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="modifiedAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="modifiedBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+                <Property Name="Year" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="Area" Type="Edm.String" Nullable="false"/>
+                <Property Name="Product" Type="Edm.String"/>
+                <Property Name="Area_size" Type="Edm.Int32"/>
+                <Property Name="Area_Qauality" Type="Edm.Int32"/>
+                <Property Name="Utlization" Type="Edm.Int32"/>
+                <Property Name="Sapling_qty" Type="Edm.Int32"/>
+                <Property Name="Sapling_price" Type="Edm.Int32"/>
+                <Property Name="Fertilizers_qty" Type="Edm.Int32"/>
+                <Property Name="Fertilizers_price" Type="Edm.Int32"/>
+                <Property Name="Labour_price" Type="Edm.Int32"/>
+                <Property Name="Readiness_cost" Type="Edm.Int32"/>
+                <Property Name="Water_cost" Type="Edm.Int32"/>
+                <Property Name="Electricity_cost" Type="Edm.Int32"/>
+                <Property Name="Govt_allowances" Type="Edm.Int32"/>
+                <Property Name="Other_expenses" Type="Edm.Int32"/>
+                <Property Name="Total_cost" Type="Edm.Int32"/>
+            </EntityType>
+            <Annotations Target="AgriExports.Procurement/createdAt">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Immutable" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="{i18n>CreatedAt}"/>
+                </Annotations>
+                <Annotations Target="AgriExports.Procurement/createdBy">
+                    <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                    <Annotation Term="Core.Immutable" Bool="true"/>
+                    <Annotation Term="Core.Computed" Bool="true"/>
+                    <Annotation Term="Core.Description" String="{i18n>UserID.Description}"/>
+                        <Annotation Term="Common.Label" String="{i18n>CreatedBy}"/>
+                        </Annotations>
+                        <Annotations Target="AgriExports.Procurement/modifiedAt">
+                            <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                            <Annotation Term="Core.Computed" Bool="true"/>
+                            <Annotation Term="Common.Label" String="{i18n>ChangedAt}"/>
+                            </Annotations>
+                            <Annotations Target="AgriExports.Procurement/modifiedBy">
+                                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                                <Annotation Term="Core.Computed" Bool="true"/>
+                                <Annotation Term="Core.Description" String="{i18n>UserID.Description}"/>
+                                    <Annotation Term="Common.Label" String="{i18n>ChangedBy}"/>
+                                    </Annotations>
+                                    <Annotations Target="AgriExports.Procurement/ID">
+                                        <Annotation Term="Core.Computed" Bool="true"/>
+                                    </Annotations>
+                                </Schema>
+                            </edmx:DataServices>
+                        </edmx:Edmx>
