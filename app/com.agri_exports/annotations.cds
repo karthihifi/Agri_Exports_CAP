@@ -18,6 +18,11 @@ annotate service.Procurement with @(UI.LineItem : [
     },
     {
         $Type : 'UI.DataField',
+        Label : 'Grade',
+        Value : Grade,
+    },
+    {
+        $Type : 'UI.DataField',
         Label : 'Area Size',
         Value : Area_size,
     },
@@ -120,15 +125,20 @@ annotate service.Procurement with @(
                 Label : 'Year',
                 Value : Year,
             },
-            {
-                $Type : 'UI.DataField',
-                Label : 'Area',
-                Value : Area,
-            },
+            // {
+            //     $Type : 'UI.DataField',
+            //     Label : 'Area',
+            //     Value : Area,
+            // },
             {
                 $Type : 'UI.DataField',
                 Label : 'Product',
                 Value : Product,
+            },
+            {
+                $Type : 'UI.DataField',
+                Label : 'Grade',
+                Value : Grade,
             },
             {
                 $Type : 'UI.DataField',
@@ -266,7 +276,7 @@ annotate service.Procurement with @(
             Measure   : Utlization,
             Role      : #Axis1,
             DataPoint : '@UI.DataPoint#Width'
-        }] 
+        }]
     },
     UI.DataPoint #Width                     : {
         Value         : Utlization,
