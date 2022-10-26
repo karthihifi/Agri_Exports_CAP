@@ -47,13 +47,27 @@ entity Harvesting : managed {
         TotalExpense   : Integer;
 }
 
-entity Yield : managed {
-    key ID          : UUID @(Core.Computed : true);
-    key Year        : Integer;
-    key Area        : String(10);
-        Product     : String(10);
-        Variety     : String(10);
-        Weight      : Integer;
-        Length      : Integer;
-        No_of_hands : Integer
+entity YieldPerArea : managed {
+    key ID        : UUID @(Core.Computed : true);
+    key Year      : Integer;
+    key Area      : String(10);
+        Product   : String(10);
+        Variety   : String(10);
+        NetWeight : Integer;
+        TotalQty  : Integer;
+        Products  : Composition of many Product
+                        on Products.up_ = $self
+
+}
+
+entity Product : managed {
+    key ID         : UUID @(Core.Computed : true);
+        Year       : Integer;
+        Area       : String(10);
+        Product    : String(10);
+        Variety    : String(10);
+        Weight     : Integer;
+        NoofLeaves : Integer;
+        length     : Integer;
+        up_        : Association to YieldPerArea;
 }

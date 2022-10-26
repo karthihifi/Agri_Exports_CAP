@@ -289,3 +289,65 @@ annotate service.Procurement with @(
         Criticality   : 3
     }
 );
+
+annotate service.YieldPerArea with @(
+    UI.SelectionFields : [Area],
+    UI.Identification  : [{
+        Value : Area,
+        Label : 'Area Name'
+    }],
+    UI.LineItem        : [
+        {
+            $Type : 'UI.DataField',
+            Label : 'Area',
+            Value : Area,
+        },
+        {
+            $Type : 'UI.DataField',
+            Label : 'Year',
+            Value : Year,
+        },
+        {
+            $Type : 'UI.DataField',
+            Label : 'Product',
+            Value : Product,
+        },
+        {
+            $Type : 'UI.DataField',
+            Label : 'Grade',
+            Value : Variety,
+        }
+    ]
+);
+
+annotate service.YieldPerArea with @(
+    UI.HeaderInfo                  : {
+        TypeName       : 'Yield Analysis',
+        TypeNamePlural : 'yield Analysis',
+        ImageUrl       : 'https://images.immediate.co.uk/production/volatile/sites/30/2017/01/Bananas-218094b-scaled.jpg',
+        Title          : {
+            $Type : 'UI.DataField',
+            Label : 'Area',
+            Value : Area,
+        },
+        Description    : {
+            $Type : 'UI.DataField',
+            Label : 'Year',
+            Value : Year,
+        },
+    },
+    UI.Facets                      : [{
+        $Type  : 'UI.ReferenceFacet',
+        ID     : 'GeneratedFacet5',
+        Label  : 'General Information',
+        Target : '@UI.FieldGroup#GeneratedGroup5',
+    }],
+    UI.FieldGroup #GeneratedGroup5 : {
+        $Type : 'UI.FieldGroupType',
+        Data  : [{
+            $Type : 'UI.DataField',
+            Label : 'Year',
+            Value : Year,
+        }]
+    },
+);
