@@ -34,3 +34,8 @@ annotate service.Procurement with {
     Area_Dimen_key      @title : 'Area Dimension Key';
     Fertilizer_Meas_key @title : 'Fertilizer Meas Key'
 }
+
+
+annotate Service.YieldPerArea with {
+    Year @title : 'Year'
+}
