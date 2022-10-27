@@ -291,7 +291,10 @@ annotate service.Procurement with @(
 );
 
 annotate service.YieldPerArea with @(
-    UI.SelectionFields : [Area,Year],
+    UI.SelectionFields : [
+        Area,
+        Year
+    ],
     UI.Identification  : [{
         Value : Area,
         Label : 'Area Name'
@@ -316,7 +319,22 @@ annotate service.YieldPerArea with @(
             $Type : 'UI.DataField',
             Label : 'Grade',
             Value : Variety,
-        }
+        },
+        {
+            $Type : 'UI.DataField',
+            Label : 'Net Weight',
+            Value : NetWeight,
+        },
+        {
+            $Type : 'UI.DataField',
+            Label : 'Total Qty',
+            Value : TotalQty,
+        },
+        {
+            $Type : 'UI.DataField',
+            Label : 'Average Weight',
+            Value : AvgWeight,
+        },
     ]
 );
 
@@ -336,18 +354,147 @@ annotate service.YieldPerArea with @(
             Value : Year,
         },
     },
+    UI.Facets                      : [
+        {
+            $Type  : 'UI.ReferenceFacet',
+            ID     : 'GeneratedFacet5',
+            Label  : 'General Information',
+            Target : '@UI.FieldGroup#GeneratedGroup5',
+        },
+        {
+            $Type  : 'UI.ReferenceFacet',
+            Label  : 'Product Details',
+            Target : 'Products/@UI.LineItem'
+        }
+    ],
+    UI.FieldGroup #GeneratedGroup5 : {
+        $Type : 'UI.FieldGroupType',
+        Data  : [
+            {
+                $Type : 'UI.DataField',
+                Label : 'Product',
+                Value : Product,
+            },
+            {
+                $Type : 'UI.DataField',
+                Label : 'Net Weight',
+                Value : NetWeight,
+            },
+            {
+                $Type : 'UI.DataField',
+                Label : 'Average Weight',
+                Value : AvgWeight,
+            },
+            {
+                $Type : 'UI.DataField',
+                Label : 'Total Quantity',
+                Value : TotalQty,
+            }
+        ]
+    },
+);
+
+
+annotate service.Products with @(UI : {
+    SelectionFields : [
+        Area,
+        Year,
+        Product,
+        Variety
+    ],
+    Identification  : [{
+        Value : Area,
+        Label : 'Area Name'
+    }],
+    LineItem        : [
+        {
+            $Type : 'UI.DataField',
+            Label : 'Area',
+            Value : Area,
+        },
+        {
+            $Type : 'UI.DataField',
+            Label : 'Year',
+            Value : Year,
+        },
+        {
+            $Type : 'UI.DataField',
+            Label : 'Product',
+            Value : Product,
+        },
+        {
+            $Type : 'UI.DataField',
+            Label : 'Variety',
+            Value : Variety,
+        },
+        {
+            $Type : 'UI.DataField',
+            Label : 'Net Weight',
+            Value : Weight,
+        },
+        {
+            $Type : 'UI.DataField',
+            Label : 'No of Leaves',
+            Value : NoofLeaves,
+        },
+        {
+            $Type : 'UI.DataField',
+            Label : 'Length',
+            Value : length,
+        }
+    ]
+});
+
+annotate service.Products with @(
+    UI.HeaderInfo                  : {
+        TypeName       : 'Product Info',
+        TypeNamePlural : 'Product Info',
+        ImageUrl       : 'https://images.immediate.co.uk/production/volatile/sites/30/2017/01/Bananas-218094b-scaled.jpg',
+        Title          : {
+            $Type : 'UI.DataField',
+            Label : 'ID',
+            Value : ID,
+        },
+        Description    : {
+            $Type : 'UI.DataField',
+            Label : 'Product',
+            Value : Product,
+        },
+    },
     UI.Facets                      : [{
         $Type  : 'UI.ReferenceFacet',
         ID     : 'GeneratedFacet5',
-        Label  : 'General Information',
+        Label  : 'Product Information',
         Target : '@UI.FieldGroup#GeneratedGroup5',
     }],
     UI.FieldGroup #GeneratedGroup5 : {
         $Type : 'UI.FieldGroupType',
-        Data  : [{
-            $Type : 'UI.DataField',
-            Label : 'Year',
-            Value : Year,
-        }]
+        Data  : [
+            {
+                $Type : 'UI.DataField',
+                Label : 'Year',
+                Value : Year,
+            },
+            {
+                $Type : 'UI.DataField',
+                Label : 'Variety',
+                Value : Variety,
+            },
+            {
+                $Type : 'UI.DataField',
+                Label : 'Net Weight',
+                Value : Weight,
+            },
+            {
+                $Type : 'UI.DataField',
+                Label : 'No of Leaves',
+                Value : NoofLeaves,
+            },
+            {
+                $Type : 'UI.DataField',
+                Label : 'Length of Product',
+                Value : length,
+            }
+        ]
     },
 );

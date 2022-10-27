@@ -47,6 +47,7 @@ entity Harvesting : managed {
         TotalExpense   : Integer;
 }
 
+@Aggregation.CustomAggregate #TotalQty : 'Edm.Decimal'
 entity YieldPerArea : managed {
     key ID        : UUID       @(Core.Computed : true);
     key Year      : Integer    @(
@@ -59,21 +60,24 @@ entity YieldPerArea : managed {
     key Area      : String(10) @title : 'Area';
         Product   : String(10);
         Variety   : String(10);
-        NetWeight : Integer;
+        @Aggregation.default : #SUM
+        NetWeight : Integer    @Common.IsUnit;
         TotalQty  : Integer;
-        Products  : Composition of many Product
-                        on Products.up_ = $self
+        AvgWeight : Integer;
+        Products  : Association to many Product
+                        on Products.ProductItem = $self
 
 }
 
 entity Product : managed {
-    key ID         : UUID @(Core.Computed : true);
-        Year       : Integer;
-        Area       : String(10);
-        Product    : String(10);
-        Variety    : String(10);
-        Weight     : Integer;
-        NoofLeaves : Integer;
-        length     : Integer;
-        up_        : Association to YieldPerArea;
+    key ID          : UUID @(Core.Computed : true);
+    key Year        : Integer;
+    key Area        : String(10);
+    key Product     : String(10);
+        Variety     : String(10);
+        Weight      : Integer;
+        NoofLeaves  : Integer;
+        length      : Integer;
+        ProductItem : Association to YieldPerArea
+// up_        : Association to YieldPerArea;
 }

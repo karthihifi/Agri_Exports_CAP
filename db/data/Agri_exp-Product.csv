@@ -1,2 +1,4 @@
-ID;Year;Area;Product;Variety;Weight;NoofLeaves;length;up__ID
-7e2f2640-6866-4dcf-8f4d-3027aa831124;2022;Area1;Banana;G9;35;7;15;7e2f2640-6866-4dcf-8f4d-3027aa831cad
+ID;Year;Area;Product;Variety;Weight;NoofLeaves;length
+7e2f2640-6866-4dcf-8f4d-3027aa831124;2022;Area1;Banana;G9;35;7;15
+7e2f2640-6866-4dcf-8f4d-3027aa831125;2022;Area2;Banana;G9;30;6;10
+7e2f2640-6866-4dcf-8f4d-3027aa831126;2022;Area2;Banana;G9;38;8;10

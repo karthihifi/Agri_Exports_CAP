@@ -39,3 +39,7 @@ annotate service.Procurement with {
 annotate Service.YieldPerArea with {
     Year @title : 'Year'
 }
+
+annotate Service.Product with {
+    Year @title : 'Year'
+}
