@@ -48,9 +48,15 @@ entity Harvesting : managed {
 }
 
 entity YieldPerArea : managed {
-    key ID        : UUID @(Core.Computed : true);
-    key Year      : Integer;
-    key Area      : String(10);
+    key ID        : UUID       @(Core.Computed : true);
+    key Year      : Integer    @(
+            assert.range : [
+                2000,
+                9999
+            ],
+            title        : 'Year'
+        );
+    key Area      : String(10) @title : 'Area';
         Product   : String(10);
         Variety   : String(10);
         NetWeight : Integer;

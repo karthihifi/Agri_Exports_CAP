@@ -291,7 +291,7 @@ annotate service.Procurement with @(
 );
 
 annotate service.YieldPerArea with @(
-    UI.SelectionFields : [Area],
+    UI.SelectionFields : [Area,Year],
     UI.Identification  : [{
         Value : Area,
         Label : 'Area Name'
