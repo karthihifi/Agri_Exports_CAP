@@ -3,8 +3,23 @@ namespace Agri_exp;
 using {
     managed,
     Currency,
+    sap.common.CodeList
 
 } from '@sap/cds/common';
+
+type ReviewStatus1 : Integer enum {
+    InProgress     = 3;
+    Reviewed       = 2;
+    ReworkRequired = 1;
+};
+
+entity ReviewStatus : CodeList {
+    key code : Integer enum {
+            InProgress     = 3;
+            Reviewed       = 2;
+            ReworkRequired = 1;
+        };
+};
 
 entity Procurement : managed {
     key ID                  : UUID @(Core.Computed : true);
@@ -49,23 +64,29 @@ entity Harvesting : managed {
 
 @Aggregation.CustomAggregate #TotalQty : 'Edm.Decimal'
 entity YieldPerArea : managed {
-    key ID        : UUID       @(Core.Computed : true);
-    key Year      : Integer    @(
+    key ID          : UUID       @(Core.Computed : true);
+    key Year        : Integer    @(
             assert.range : [
                 2000,
                 9999
             ],
             title        : 'Year'
         );
-    key Area      : String(10) @title : 'Area';
-        Product   : String(10);
-        Variety   : String(10);
+    key Area        : String(10) @title : 'Area';
+        Product     : String(10);
+        Variety     : String(10);
+        @Measures.Unit       : 'Kg'
         @Aggregation.default : #SUM
-        NetWeight : Integer    @Common.IsUnit;
-        TotalQty  : Integer;
-        AvgWeight : Integer;
-        Products  : Association to many Product
-                        on Products.ProductItem = $self
+        NetWeight   : Integer    @Common.IsUnit;
+        TotalQty    : Integer;
+        @Measures.Unit       : 'Kg'
+        AvgWeight   : Integer;
+        Review_Stat : ReviewStatus1;
+        // Rework_Required : Boolean;
+        @title               : 'Rework Required'
+        Comments    : String;
+        Products    : Association to many Product
+                          on Products.ProductItem = $self
 
 }
 
@@ -75,8 +96,10 @@ entity Product : managed {
     key Area        : String(10);
     key Product     : String(10);
         Variety     : String(10);
+        @Measures.Unit : 'Kg'
         Weight      : Integer;
         NoofLeaves  : Integer;
+        @Measures.Unit : 'cm'
         length      : Integer;
         ProductItem : Association to YieldPerArea
 // up_        : Association to YieldPerArea;

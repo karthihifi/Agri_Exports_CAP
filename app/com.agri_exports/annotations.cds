@@ -301,6 +301,11 @@ annotate service.YieldPerArea with @(
     }],
     UI.LineItem        : [
         {
+            $Type  : 'UI.DataFieldForAction',
+            Label  : 'Review Data',
+            Action : 'AgriExports.EntityContainer/ReviewState',
+        },
+        {
             $Type : 'UI.DataField',
             Label : 'Area',
             Value : Area,
@@ -335,6 +340,17 @@ annotate service.YieldPerArea with @(
             Label : 'Average Weight',
             Value : AvgWeight,
         },
+        {
+            $Type       : 'UI.DataField',
+            Label       : 'Reviewed',
+            Value       : Reviews.Review_Stat,
+            Criticality : Reviews.Review_Stat
+        },
+        {
+            $Type : 'UI.DataField',
+            Label : 'Comments',
+            Value : Reviews.Comments,
+        },
     ]
 );
 
@@ -353,6 +369,7 @@ annotate service.YieldPerArea with @(
             Label : 'Year',
             Value : Year,
         },
+        $Type          : 'UI.HeaderInfoType',
     },
     UI.Facets                      : [
         {
@@ -370,6 +387,12 @@ annotate service.YieldPerArea with @(
     UI.FieldGroup #GeneratedGroup5 : {
         $Type : 'UI.FieldGroupType',
         Data  : [
+            {
+                $Type  : 'UI.DataFieldForAction',
+                Label  : 'Review Data',
+                Action : 'AgriExports.EntityContainer/ReviewState',
+            },
+
             {
                 $Type : 'UI.DataField',
                 Label : 'Product',

@@ -36,9 +36,19 @@ annotate service.Procurement with {
 }
 
 
-annotate Service.YieldPerArea with {
-    Year @title : 'Year'
-}
+// annotate Service.YieldPerArea with {
+//     Year      @title : 'Year';
+//     @Measures : {Unit : 'Kg'}
+//     NetWeight @title : 'Net Weight'
+
+// }
+
+annotate service.YieldPerArea with {
+    Year      @title : 'Year';
+    @Measures : {Unit : 'Kg'}
+    NetWeight @title : 'Net Weight'
+};
+
 
 annotate Service.Product with {
     Year @title : 'Year'
