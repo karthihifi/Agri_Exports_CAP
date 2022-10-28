@@ -81,7 +81,7 @@ entity YieldPerArea : managed {
         TotalQty    : Integer;
         @Measures.Unit       : 'Kg'
         AvgWeight   : Integer;
-        Review_Stat : ReviewStatus1;
+        Review_Stat : Integer;
         // Rework_Required : Boolean;
         @title               : 'Rework Required'
         Comments    : String;

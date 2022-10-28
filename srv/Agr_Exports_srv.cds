@@ -34,7 +34,8 @@ service AgriExports {
             Area,
             Product;
 
-    action ReviewState(Review_Stat : Agri_exp.ReviewStatus:descr  @Common.ValueList : {
+    action ReviewState(Review_Stat : Agri_exp.ReviewStatus:descr @Common.ValueListWithFixedValues : true
+                                                                 @Common.ValueList                : {
         $Type          : 'Common.ValueListType',
         CollectionPath : 'Products',
         Parameters     : [{
