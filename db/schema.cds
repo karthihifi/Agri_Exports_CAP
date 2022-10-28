@@ -1,6 +1,7 @@
 namespace Agri_exp;
 
 using {
+    cuid,
     managed,
     Currency,
     sap.common.CodeList
@@ -13,16 +14,18 @@ type ReviewStatus1 : Integer enum {
     ReworkRequired = 1;
 };
 
-entity ReviewStatus : CodeList {
-    key code : Integer enum {
+
+entity ReviewStatus : cuid, managed {
+    key code  : Integer enum {
             InProgress     = 3;
             Reviewed       = 2;
             ReworkRequired = 1;
         };
+        descr : String;
 };
 
-entity Procurement : managed {
-    key ID                  : UUID @(Core.Computed : true);
+entity Procurement : cuid, managed {
+        // key ID                  : UUID @(Core.Computed : true);
     key Year                : Integer;
     key Area                : String(10);
         Product             : String(10);
@@ -46,8 +49,8 @@ entity Procurement : managed {
         Fertilizer_Meas_key : String(5);
 }
 
-entity Harvesting : managed {
-    key ID             : UUID @(Core.Computed : true);
+entity Harvesting : cuid, managed {
+        // key ID             : UUID @(Core.Computed : true);
     key Year           : Integer;
     key Area           : String(10);
         Product        : String(10);
@@ -63,35 +66,62 @@ entity Harvesting : managed {
 }
 
 @Aggregation.CustomAggregate #TotalQty : 'Edm.Decimal'
-entity YieldPerArea : managed {
-    key ID          : UUID       @(Core.Computed : true);
-    key Year        : Integer    @(
+entity YieldPerArea : cuid, managed {
+        // key ID                 : UUID       @(Core.Computed : true);
+    key Year               : Integer    @(
             assert.range : [
                 2000,
                 9999
             ],
             title        : 'Year'
         );
-    key Area        : String(10) @title : 'Area';
-        Product     : String(10);
-        Variety     : String(10);
+    key Area               : String(10) @title : 'Area';
+        Product            : String(10);
+        Variety            : String(10);
         @Measures.Unit       : 'Kg'
         @Aggregation.default : #SUM
-        NetWeight   : Integer    @Common.IsUnit;
-        TotalQty    : Integer;
+        NetWeight          : Integer    @Common.IsUnit;
+        TotalQty           : Integer;
         @Measures.Unit       : 'Kg'
-        AvgWeight   : Integer;
-        Review_Stat : Integer;
-        // Rework_Required : Boolean;
+        AvgWeight          : Integer;
+        Review_Stat        : String;
+        Review_Criticality : Integer;
         @title               : 'Rework Required'
-        Comments    : String;
-        Products    : Association to many Product
-                          on Products.ProductItem = $self
+        Comments           : String;
+        Products           : Association to many Product
+                                 on Products.ProductItem = $self
 
 }
 
-entity Product : managed {
-    key ID          : UUID @(Core.Computed : true);
+entity ExtYieldPerArea : cuid, managed {
+        // key ID                 : UUID       @(Core.Computed : true);
+    key Year               : Integer    @(
+            assert.range : [
+                2000,
+                9999
+            ],
+            title        : 'Year'
+        );
+    key Area               : String(10) @title : 'Area';
+        Product            : String(10);
+        Variety            : String(10);
+        @Measures.Unit       : 'Kg'
+        @Aggregation.default : #SUM
+        NetWeight          : Integer    @Common.IsUnit;
+        TotalQty           : Integer;
+        @Measures.Unit       : 'Kg'
+        AvgWeight          : Integer;
+        Review_Stat        : String(15);
+        Review_Criticality : Integer;
+        @title               : 'Rework Required'
+        Comments           : String(300);
+// Products           : Association to many Product
+//                          on Products.ProductItem = $self
+
+}
+
+entity Product : cuid, managed {
+        // key ID          : UUID @(Core.Computed : true);
     key Year        : Integer;
     key Area        : String(10);
     key Product     : String(10);

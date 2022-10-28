@@ -300,11 +300,11 @@ annotate service.YieldPerArea with @(
         Label : 'Area Name'
     }],
     UI.LineItem        : [
-        {
-            $Type  : 'UI.DataFieldForAction',
-            Label  : 'Review Data',
-            Action : 'AgriExports.EntityContainer/ReviewState',
-        },
+        // {
+        //     $Type  : 'UI.DataFieldForAction',
+        //     Label  : 'Review Data',
+        //     Action : 'AgriExports.ReviewState',
+        // },
         {
             $Type : 'UI.DataField',
             Label : 'Area',
@@ -344,7 +344,8 @@ annotate service.YieldPerArea with @(
             $Type       : 'UI.DataField',
             Label       : 'Reviewed',
             Value       : Reviews.Review_Stat,
-            Criticality : Reviews.Review_Stat
+            Criticality : Reviews.Review_Criticality,
+        // CriticalityRepresentation : '',
         },
         {
             $Type : 'UI.DataField',
@@ -390,7 +391,7 @@ annotate service.YieldPerArea with @(
             {
                 $Type  : 'UI.DataFieldForAction',
                 Label  : 'Review Data',
-                Action : 'AgriExports.EntityContainer/ReviewState',
+                Action : 'AgriExports.ReviewState',
             },
 
             {
@@ -493,10 +494,16 @@ annotate service.Products with @(
     UI.FieldGroup #GeneratedGroup5 : {
         $Type : 'UI.FieldGroupType',
         Data  : [
+            // {
+            //     $Type  : 'UI.DataFieldForAction',
+            //     Label  : 'Review Data',
+            //     Action : 'AgriExports.EntityContainer/ReviewState',
+            // },
             {
                 $Type : 'UI.DataField',
                 Label : 'Year',
                 Value : Year,
+            // @cds.odata.bindingparameter.name : '_it'
             },
             {
                 $Type : 'UI.DataField',
