@@ -53,3 +53,24 @@ annotate service.YieldPerArea with {
 annotate Service.Product with {
     Year @title : 'Year'
 }
+
+
+annotate service.Buyers with {
+    Region           @title : 'Region';
+    CustomerName     @title : 'Buyer Name';
+    TradingCurrency  @title : 'Trading Currency';
+    TradingCommodity @title : 'Trading Commodities';
+    NearestPort      @title : 'Nearest Port';
+    Country          @title : 'Country';
+    Address          @title : 'Address';
+    BuyerType        @title : 'Type of Buyer';
+    @Measures.Unit : 'Ton'
+    BuyerCapacity    @title : 'Capacity';
+    PackingType      @title : 'Packing Type';
+    BuyingFrequency  @title : 'Buying Frequency';
+    Contactno        @title : 'Contact No';
+    Email            @title : 'Email';
+    Website          @title : 'Website Address';
+    PaymentTerm      @title : 'Payment Terms';
+    Buyer_Rating     @title : 'Rating';
+};

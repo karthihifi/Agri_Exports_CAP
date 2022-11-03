@@ -59,7 +59,7 @@ service AgriExports {
             } actions {
                 @cds.odata.bindingparameter.name : '_it'
                 // @Common.DefaultValuesFunction    : 'getYieldArea'
-                action ReviewState(Area : AgriExports.Actionret:Area
+                action   ReviewState(Area : AgriExports.Actionret:Area
                                                                 @UI.ParameterDefaultValue        : _it.Area
                                                                 @Common                          : {FieldControl : #ReadOnly, },
                 Review_Stat : AgriExports.Actionret:Review_Stat @Common.ValueListWithFixedValues : true
@@ -74,21 +74,9 @@ service AgriExports {
 
                 }  @title : 'Review Status',
                 Comments : AgriExports.Actionret:Comments       @UI.MultiLineText );
+                function getYieldArea() returns Actionret;
             };
 
-    function getYieldArea() returns Actionret;
-
-    // @cds.odata.bindingparameter.collection
-    // @cds.odata.bindingparameter.name : '_it'
-    // @Common.DefaultValuesFunction    : 'getYieldArea'
-    // // actions {
-    // @sap.applicable.path             : 'startEnabled'
-
-    // }
-
-    annotate ReviewState with {
-
-    }
-
-
+    @odata.draft.enabled
+    entity BuyerData       as projection on Agri_exp.Buyers;
 }

@@ -528,3 +528,197 @@ annotate service.Products with @(
         ]
     },
 );
+
+annotate service.BuyerData with @(UI : {
+    SelectionFields : [
+        Region,
+        CustomerName,
+        Country.code,
+        BuyerType,
+        PaymentTerm
+    ],
+    Identification  : [{
+        Value : CustomerName,
+        Label : 'Buyer Name'
+    }],
+    LineItem        : [
+        {
+            $Type : 'UI.DataField',
+            Label : 'Region',
+            Value : Region,
+        },
+        {
+            $Type : 'UI.DataField',
+            Label : 'Country',
+            Value : Country_code,
+        },
+        {
+            $Type : 'UI.DataField',
+            Label : 'Buyer Name',
+            Value : CustomerName,
+        },
+        {
+            $Type : 'UI.DataField',
+            Label : 'Buyer Type',
+            Value : BuyerType,
+        },
+        {
+            $Type : 'UI.DataField',
+            Label : 'Contact No',
+            Value : Contactno,
+        },
+        {
+            $Type : 'UI.DataField',
+            Label : 'Email',
+            Value : Email,
+        },
+        {
+            $Type : 'UI.DataField',
+            Label : 'Buyer Rating',
+            Value : Buyer_Rating,
+        },
+    ]
+});
+
+
+annotate service.BuyerData with @(
+    UI.HeaderInfo                        : {
+        TypeName       : 'Buyer Info',
+        TypeNamePlural : 'Buyer Info',
+        ImageUrl       : 'https://images.immediate.co.uk/production/volatile/sites/30/2017/01/Bananas-218094b-scaled.jpg',
+        Title          : {
+            $Type : 'UI.DataField',
+            Label : 'Buyer Name',
+            Value : CustomerName,
+        },
+        Description    : {
+            $Type : 'UI.DataField',
+            Label : 'Region',
+            Value : Region,
+        },
+    },
+    UI.HeaderFacets                      : [{
+        $Type  : 'UI.ReferenceFacet',
+        Label  : 'Contact Detail',
+        Target : '@UI.FieldGroup#GeneratedHeaderGroup1'
+    }, ],
+    UI.Facets                            : [
+        {
+            $Type  : 'UI.ReferenceFacet',
+            ID     : 'GeneratedFacet2',
+            Label  : 'Buyer Information',
+            Target : '@UI.FieldGroup#GeneratedGroup2',
+        },
+        {
+            $Type  : 'UI.ReferenceFacet',
+            ID     : 'GeneratedFacet1',
+            Label  : 'Address Information',
+            Target : '@UI.FieldGroup#GeneratedGroup1',
+        }
+    ],
+    UI.FieldGroup #GeneratedGroup2       : {
+        $Type : 'UI.FieldGroupType',
+        Data  : [
+            {
+                $Type : 'UI.DataField',
+                Label : 'Trading Commodity',
+                Value : TradingCommodity,
+            },
+            {
+                $Type : 'UI.DataField',
+                Label : 'Trading Currency',
+                Value : TradingCurrency,
+            },
+            {
+                $Type : 'UI.DataField',
+                Label : 'Nearest Port',
+                Value : NearestPort,
+            },
+            {
+                $Type : 'UI.DataField',
+                Label : 'Buyer Type',
+                Value : BuyerType,
+            },
+            {
+                $Type : 'UI.DataField',
+                Label : 'Buyer Capacity',
+                Value : BuyerCapacity,
+            },
+            {
+                $Type : 'UI.DataField',
+                Label : 'Buyer Frequency',
+                Value : BuyingFrequency,
+            },
+            {
+                $Type : 'UI.DataField',
+                Label : 'Packing Requirements',
+                Value : PackingType,
+            },
+            {
+                $Type : 'UI.DataField',
+                Label : 'Payment Term',
+                Value : PaymentTerm,
+            },
+            {
+                $Type : 'UI.DataField',
+                Label : 'Trade Activity Period',
+                Value : Activity_months,
+            }
+        ]
+    },
+    UI.FieldGroup #GeneratedGroup1       : {
+        $Type : 'UI.FieldGroupType',
+        Data  : [
+            {
+                $Type : 'UI.DataField',
+                Label : 'Street',
+                Value : Address_street,
+            },
+            {
+                $Type : 'UI.DataField',
+                Label : 'Town',
+                Value : Address_town,
+            },
+            {
+                $Type : 'UI.DataField',
+                Label : 'Region',
+                Value : Address_region,
+            },
+            {
+                $Type : 'UI.DataField',
+                Label : 'Country',
+                Value : Address_country_code,
+            },
+            {
+                $Type : 'UI.DataField',
+                Label : 'Zip Code',
+                Value : Address_Pincode,
+            }
+        ]
+    },
+    UI.FieldGroup #GeneratedHeaderGroup1 : {
+        $Type : 'UI.FieldGroupType',
+        Data  : [
+            {
+                $Type : 'UI.DataField',
+                Label : 'Email',
+                Value : Email,
+            },
+            {
+                $Type : 'UI.DataField',
+                Label : 'Website',
+                Value : Website,
+            },
+            {
+                $Type : 'UI.DataField',
+                Label : 'Contact Details',
+                Value : Contactno,
+            },
+            {
+                $Type : 'UI.DataField',
+                Label : 'Rating',
+                Value : Buyer_Rating,
+            }
+        ]
+    },
+);

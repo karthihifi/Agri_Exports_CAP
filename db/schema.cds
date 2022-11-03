@@ -4,6 +4,7 @@ using {
     cuid,
     managed,
     Currency,
+    Country,
     sap.common.CodeList
 
 } from '@sap/cds/common';
@@ -13,6 +14,14 @@ type ReviewStatus1 : Integer enum {
     Reviewed       = 2;
     ReworkRequired = 1;
 };
+
+type Address {
+    street  : String;
+    town    : String;
+    Pincode : Integer;
+    country : Country; //> pre-defined reuse type
+    region  : String;
+}
 
 
 entity ReviewStatus : cuid, managed {
@@ -133,4 +142,26 @@ entity Product : cuid, managed {
         length      : Integer;
         ProductItem : Association to YieldPerArea
 // up_        : Association to YieldPerArea;
+}
+
+
+entity Buyers : cuid, managed {
+    key ID               : UUID @(Core.Computed : true);
+        Region           : String;
+        CustomerName     : String;
+        TradingCurrency  : String(3) default 'USD';
+        TradingCommodity : String;
+        NearestPort      : String;
+        Country          : Country;
+        Address          : Address;
+        BuyerType        : String;
+        BuyerCapacity    : Integer;
+        BuyingFrequency  : Integer;
+        PackingType      : String;
+        Contactno        : Integer;
+        Email            : String;
+        Website          : String;
+        PaymentTerm      : String;
+        Buyer_Rating     : Integer;
+        Activity_months   :String; 
 }
