@@ -1,6 +1,7 @@
 using Agri_exp from '../db/schema';
 
-service AgriExports {
+
+service AgriExports @(path : '/service') {
 
     type Actionret {
         Area        : String;
@@ -41,7 +42,8 @@ service AgriExports {
             group by
                 Year,
                 Area,
-                Product
+                Product,
+                Variety
         union
             select from Agri_exp.ExtYieldPerArea {
                     // key ID             as id,
@@ -56,7 +58,13 @@ service AgriExports {
                                                       on Products.Area = $self.Area,
                     Reviews                     : Association to AgriExports.YieldPerArea1
                                                       on Reviews.Area = $self.Area
-            } actions {
+            }
+            group by
+                Year,
+                Area,
+                Product,
+                Variety
+            actions {
                 @cds.odata.bindingparameter.name : '_it'
                 // @Common.DefaultValuesFunction    : 'getYieldArea'
                 action   ReviewState(Area : AgriExports.Actionret:Area

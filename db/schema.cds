@@ -9,11 +9,11 @@ using {
 
 } from '@sap/cds/common';
 
-type ReviewStatus1 : Integer enum {
-    InProgress     = 3;
-    Reviewed       = 2;
-    ReworkRequired = 1;
-};
+// type ReviewStatus1 : Integer enum {
+//     InProgress     = 3;
+//     Reviewed       = 2;
+//     ReworkRequired = 1;
+// };
 
 type Address {
     street  : String;
@@ -24,17 +24,13 @@ type Address {
 }
 
 
-entity ReviewStatus : cuid, managed {
-    key code  : Integer enum {
-            InProgress     = 3;
-            Reviewed       = 2;
-            ReworkRequired = 1;
-        };
+entity ReviewStatus : CodeList {
+    key code  : Integer;
         descr : String;
 };
 
 entity Procurement : cuid, managed {
-        // key ID                  : UUID @(Core.Computed : true);
+    key ID                  : UUID @(Core.Computed : true);
     key Year                : Integer;
     key Area                : String(10);
         Product             : String(10);
@@ -59,7 +55,7 @@ entity Procurement : cuid, managed {
 }
 
 entity Harvesting : cuid, managed {
-        // key ID             : UUID @(Core.Computed : true);
+    key ID             : UUID @(Core.Computed : true);
     key Year           : Integer;
     key Area           : String(10);
         Product        : String(10);
@@ -76,7 +72,7 @@ entity Harvesting : cuid, managed {
 
 @Aggregation.CustomAggregate #TotalQty : 'Edm.Decimal'
 entity YieldPerArea : cuid, managed {
-        // key ID                 : UUID       @(Core.Computed : true);
+    key ID                 : UUID       @(Core.Computed : true);
     key Year               : Integer    @(
             assert.range : [
                 2000,
@@ -103,7 +99,7 @@ entity YieldPerArea : cuid, managed {
 }
 
 entity ExtYieldPerArea : cuid, managed {
-        // key ID                 : UUID       @(Core.Computed : true);
+    key ID                 : UUID       @(Core.Computed : true);
     key Year               : Integer    @(
             assert.range : [
                 2000,
@@ -130,7 +126,7 @@ entity ExtYieldPerArea : cuid, managed {
 }
 
 entity Product : cuid, managed {
-        // key ID          : UUID @(Core.Computed : true);
+    key ID          : UUID @(Core.Computed : true);
     key Year        : Integer;
     key Area        : String(10);
     key Product     : String(10);
@@ -144,10 +140,20 @@ entity Product : cuid, managed {
 // up_        : Association to YieldPerArea;
 }
 
+type Region {
+    Code  : String(5);
+    descr : String
+}
+
+entity Regions : CodeList {
+    key Code  : String(10);
+        name  : String;
+        descr : String;
+}
 
 entity Buyers : cuid, managed {
     key ID               : UUID @(Core.Computed : true);
-        Region           : String;
+        Region           : Association to Regions;
         CustomerName     : String;
         TradingCurrency  : String(3) default 'USD';
         TradingCommodity : String;
@@ -163,5 +169,5 @@ entity Buyers : cuid, managed {
         Website          : String;
         PaymentTerm      : String;
         Buyer_Rating     : Integer;
-        Activity_months   :String; 
+        Activity_months  : String;
 }
