@@ -10,21 +10,77 @@ service AgriExports @(path : '/service') {
     }
 
 
-    entity Procurement     as projection on Agri_exp.Procurement;
+    entity Procurement @(restrict : [
+        {
+            grant : ['READ'],
+            to    : [Agri_Exp_Viewer]
+        },
+        {
+            grant : ['*'],
+            to    : [Agri_Exp_Manager]
+        }
+    ]) as projection on Agri_exp.Procurement;
 
     @odata.draft.enabled
     @cds.redirection.target
-    entity Products        as projection on Agri_exp.Product
+    entity Products @(restrict : [
+        {
+            grant : ['READ'],
+            to    : [Agri_Exp_Viewer]
+        },
+        {
+            grant : ['*'],
+            to    : [Agri_Exp_Manager]
+        }
+    ]) as projection on Agri_exp.Product
 
     // @odata.draft.enabled
-    entity YieldPerArea1   as projection on Agri_exp.YieldPerArea
-    entity ReviewStatus    as projection on Agri_exp.ReviewStatus
-    entity ExtYieldperArea as projection on Agri_exp.ExtYieldPerArea
+    entity YieldPerArea1 @(restrict : [
+        {
+            grant : ['READ'],
+            to    : [Agri_Exp_Viewer]
+        },
+        {
+            grant : ['*'],
+            to    : [Agri_Exp_Manager]
+        }
+    ]) as projection on Agri_exp.YieldPerArea
+
+    entity ReviewStatus @(restrict : [
+        {
+            grant : ['READ'],
+            to    : [Agri_Exp_Viewer]
+        },
+        {
+            grant : ['*'],
+            to    : [Agri_Exp_Manager]
+        }
+    ]) as projection on Agri_exp.ReviewStatus
+
+    entity ExtYieldperArea @(restrict : [
+        {
+            grant : ['READ'],
+            to    : [Agri_Exp_Viewer]
+        },
+        {
+            grant : ['*'],
+            to    : [Agri_Exp_Manager]
+        }
+    ]) as projection on Agri_exp.ExtYieldPerArea
 
     // @cds.redirection.target
     @readonly
     // @odata.draft.enabled
-    entity YieldPerArea    as
+    entity YieldPerArea                                         @(restrict : [
+        {
+            grant : ['READ'],
+            to    : [Agri_Exp_Viewer]
+        },
+        {
+            grant : ['*'],
+            to    : [Agri_Exp_Manager]
+        }
+    ]) as
             select from Agri_exp.Product {
                     // key ID          as id,
                 key Area        as Area,
@@ -86,5 +142,14 @@ service AgriExports @(path : '/service') {
             };
 
     @odata.draft.enabled
-    entity BuyerData       as projection on Agri_exp.Buyers;
+    entity BuyerData @(restrict : [
+        {
+            grant : ['READ'],
+            to    : [Agri_Exp_Viewer]
+        },
+        {
+            grant : ['*'],
+            to    : [Agri_Exp_Manager]
+        }
+    ]) as projection on Agri_exp.Buyers;
 }

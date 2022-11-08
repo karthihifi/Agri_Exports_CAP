@@ -42,6 +42,7 @@ modules:
     requires:
       # 'hana' and 'xsuaa' resources extracted from CAP configuration
       - name: Agri_exports-db
+      - name: Agri_exports-xsuaa
 
   # -------------------- APPROUTER MODULE ------------------------
   - name: Agri_exports-approuter
@@ -49,14 +50,14 @@ modules:
     type: nodejs
     path: approuter
     requires:
-      # 'hana' and 'xsuaa' resources extracted from CAP configuration
+      - name: Agri_exports-xsuaa
       - name: srv-api
-      group: destinations
-      properties:
-        forwardAuthToken: true
-        strictSSL: true
-        name: srv-binding
-        url: "~{srv-url}"
+        group: destinations
+        properties:
+          forwardAuthToken: true
+          strictSSL: true
+          name: srv-binding
+          url: "~{srv-url}"
     build-parameters:
       requires:
         - name: Agri_exports-app
@@ -83,3 +84,23 @@ resources:
       service-plan: hdi-shared
     properties:
       hdi-service-name: ${service-name}
+
+    # ------------------------------------------------------------
+  - name: Agri_exports-xsuaa
+    # ------------------------------------------------------------
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: xsuaa 
+      service-plan: application
+      path: ./xs-security.json
+      config:
+        xsappname: 'Agri_exports-${space}'
+        role-collections:
+          - name: 'Agri_Exp_Manager-${space}'
+            description: Agri Export Service Manager
+            role-template-references:
+            - $XSAPPNAME.Agri_Exp_Manager
+          - name: 'Agri_Exp_Viewer-${space}'
+            description: Agri Export Service Viewer
+            role-template-references:
+            - $XSAPPNAME.Agri_Exp_Viewer

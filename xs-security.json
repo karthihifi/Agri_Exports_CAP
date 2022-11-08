@@ -1,0 +1,29 @@
+{
+  "xsappname": "Agri_exports",
+  "tenant-mode": "dedicated",
+  "scopes": [
+    {
+      "name": "$XSAPPNAME.Agri_Exp_Viewer",
+      "description": "Agri Exports Viewer"
+    },
+    {
+      "name": "$XSAPPNAME.Agri_Exp_Manager",
+      "description": "Agri Exports Admin"
+    }
+  ],
+  "attributes": [],
+  "role-templates": [
+    {
+      "name": "Agri_Exp_Viewer",
+      "description": "generated",
+      "scope-references": ["$XSAPPNAME.Agri_Exp_Viewer"],
+      "attribute-references": []
+    },
+    {
+      "name": "Agri_Exp_Manager",
+      "description": "generated",
+      "scope-references": ["$XSAPPNAME.Agri_Exp_Manager"],
+      "attribute-references": []
+    }
+  ]
+}
